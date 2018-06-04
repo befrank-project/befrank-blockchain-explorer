@@ -1,11 +1,11 @@
-var api = 'http://108.61.198.115:32348';
-var blockTargetInterval = 240;
+var api = 'http://localhost:18322';
+var blockTargetInterval = 120;
 var coinUnits = 1000000000000;
-var symbol = 'KRB';
+var symbol = 'BFR';
 var refreshDelay = 30000;
 // pools stats by MainCoins
 var networkStat = {
-    "krb": [
+    "BFR": [
 		["karbo.hashvault.pro", "https://karbo.hashvault.pro/api/pool/stats"],
 		["krb.semipool.com", "https://krb-api.semipool.com/pool/stats"],
 		["krb.mypool.name", "http://krb.mypool.name:32351/stats"],
