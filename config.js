@@ -1,6 +1,6 @@
-var api = 'http://localhost:18322';
+var api = 'http://blocks.befrank.site:18322';
 var blockTargetInterval = 120;
-var coinUnits = 1000000000000;
+var coinUnits = 100;
 var symbol = 'BFR';
 var refreshDelay = 30000;
 // pools stats by MainCoins
