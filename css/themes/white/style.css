@@ -12,8 +12,8 @@
 	height: 1.3em;
 	display: inline-block;
 	vertical-align: middle;
-	color: #FFF137;
-	border: 2px solid #FFF137;
+	color: #ff001f;
+	border: 2px solid #290100;
 	border-radius: 50%;
 	text-align: center;
 	margin-top: -4px;
@@ -24,7 +24,7 @@ body {
 }
 
 .navbar-inverse {
-  background-color: #2D5768;
+  background-color: rgba(101, 209, 245, 0.4);
   border-color: #f9f9f8;
   border-width: 0;
 }
@@ -60,7 +60,7 @@ body {
 .navbar-default .navbar-nav>li>a .fa,
 .navbar-default .navbar-nav>.active>a .fa,
 .navbar-inverse .fa {
-	color: #FFF137;
+	color: #ff001f;
 }
 
 
@@ -70,7 +70,7 @@ body {
 }
 
 #stats_updated {
-  color: #F4FC3D;
+  color: #ff001f;
   position: absolute; 
   right: 10px;
   top: 15px;
@@ -84,7 +84,7 @@ hr {
 }
 
 .stats > div i.fa {
-  color: #00A0E3;
+  color: #65d1f5;
   font-size: 21px;
   width: 30px;
   text-align: center;
@@ -94,7 +94,7 @@ hr {
   padding: 0 2px;
 }
 .nav .form-control {
-  border: 1px solid #00A0E3;
+  border: 1px solid #65d1f5;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -105,17 +105,17 @@ hr {
 .nav .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #178ACC;
+  border-color: #65d1f5;
 }
 .nav .input-group-addon {
-  background-color: #00A0E3;
+  background-color: #65d1f5;
   color: #fff;
   border-color: #00A0E3;
 }
 .nav .btn-default {
   color: #ffffff;
-  background-color: #00A0E3;
-  border-color: #00A0E3;
+  background-color: #65d1f5;
+  border-color: #65d1f5;
 }
 .nav .btn-default:hover,
 .nav .btn-default:focus,
@@ -124,7 +124,7 @@ hr {
 .nav .open > .dropdown-toggle.btn-default {
   color: #ffffff;
   background-color: #178ACC;
-  border-color: #026a4d;
+  border-color: #c2c100;
 }
 .nav .btn-default:active,
 .nav .btn-default.active,
@@ -150,7 +150,7 @@ hr {
   border-color: #00A0E3;
 }
 .nav .btn-default .badge {
-  color: #00A0E3;
+  color: #65d1f5;
   background-color: #ffffff;
 }
 
@@ -183,10 +183,10 @@ code {
   font-weight: 500;
 }
 .bg-primary {
-  background-color: #00A0E3;
+  background-color: #65d1f5;
 }
 .bg-info {
-  background-color: #336A80;
+  background-color: #65d1f5;
   color: #fff;
 }
 
@@ -212,8 +212,8 @@ code {
   background-color: #dbebff;
 }
 .table > thead > tr > th {
-  color: #336A80;
-  border-bottom-color: #336A80;
+  color: #65d1f5;
+  border-bottom-color: #65d1f5;
   text-align: center;
   font-size: 1em;
 }
@@ -314,7 +314,7 @@ b {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #00A0E3;
+  background-color: #65d1f5;
 }
 
 
