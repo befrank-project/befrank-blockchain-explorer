@@ -141,6 +141,7 @@
 
     function getReadableCoins(coins, digits, withoutSymbol){
         var amount = (parseInt(coins || 0) / coinUnits).toFixed(digits || coinUnits.toString().length - 1);
+        amount = number_format(amount,2,".",",");
         return amount + (withoutSymbol ? '' : (' ' + symbol));
     }
 
