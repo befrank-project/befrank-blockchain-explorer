@@ -6,7 +6,7 @@ var refreshDelay = 30000;
 // pools stats by MainCoins
 var networkStat = {
     "BFR": [
-		["karbo.hashvault.pro", "https://karbo.hashvault.pro/api/pool/stats"],
+		["eat-sleep-mine.com", "https://eat-sleep-mine.com//api/pool/stats"],
 		["krb.semipool.com", "https://krb-api.semipool.com/pool/stats"],
 		["krb.mypool.name", "http://krb.mypool.name:32351/stats"],
 		["democats.org/pool/?name=karbowanec", "http://pool2.democats.org:7673/stats"],
