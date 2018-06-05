@@ -3,6 +3,7 @@ var blockTargetInterval = 120;
 var coinUnits = 100;
 var symbol = 'BFR';
 var refreshDelay = 10000;
+var minimumFee = 100;
 // pools stats by MainCoins
 var networkStat = {
     "BFR": [
