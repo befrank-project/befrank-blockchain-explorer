@@ -245,14 +245,30 @@
 
     function getBlockchainUrl(id) {
         return blockchainExplorer.replace('{id}', id);
-    }
+	}
+
+	function getinfo() {
+		$.ajax({
+			url: api + '/getinfo',
+			timeout: 1500 //in milliseconds
+		})
+		.done(function (data) {
+			try {
+				lastStats = JSON.parse(data);
+			} catch (e) {
+				lastStats = data;
+			}
+			routePage(fetchLiveStats);
+		})
+		.fail(function () {
+			apiList.push(api);
+			api = apiList.shift();
+			getinfo();
+		});
+	}
 
     $(function(){
-        $.get(api + '/getinfo', function(data){
-            //lastStats = JSON.parse(data);
-            lastStats = data;
-            routePage(fetchLiveStats);
-        });
+		getinfo();
     });
 	
     // Blockexplorer functions
@@ -297,7 +313,7 @@
             <ul class="nav navbar-nav navbar-left explorer_menu">
 
 			    <li><a class="hot_link" data-page="home.html" href="#">
-                    <i class="fa fa-cubes" aria-hidden="true"></i> Block Explorer
+                    <i class="fa fa-cubes" aria-hidden="true"></i> Explorer
                 </a></li>
 				
 				<li><a class="hot_link" data-page="pools.html" href="#pools">
@@ -308,7 +324,12 @@
                     <i class="fa fa-code" aria-hidden="true"></i> API
                 </a></li>
 
-				
+				<li><a class="hot_link" data-page="check_payment.html" href="#check_payment">
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i> Check payment
+                </a></li>
+
+
+
 				<button rel="/css/themes/dark/style.css" class="btn btn-default theme-switch" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Switch to Night Mode"><i class="fa fa-moon-o"></i></button>
 				<button rel="/css/themes/white/style.css" class="btn btn-default theme-switch" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Switch to Day Mode"><i class="fa fa-sun-o"></i></button>
 				
@@ -322,10 +343,6 @@
 				
 				<li style="display:none;"><a class="hot_link" data-page="blockchain_payment_id.html" href="#blockchain_payment_id"><i class="fa fa-cubes"></i> Transactions by Payment ID
                 </a></li>
-
-                <li><a  style="display:none;" class="hot_link" data-page="support.html" href="#support">
-                    <i class="fa fa-comments"></i> Help
-                </a></li> 
 
 <!-- //-->
             </ul>
