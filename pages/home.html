@@ -133,7 +133,7 @@
 			  <div class="panel-body">
 				
 				  <ul class="nav nav-pills nav-stacked">
-					<li href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" data-original-title="">Total Fees: <span id="mempool_fees" class="value"></span></a></li>
+					<li href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" data-original-title="">Total Fees: <span id="mempool_fees" class="value"></span></li>
 				  </ul>
 				
 			  </div>
@@ -253,7 +253,7 @@ currentPage = {
             updateText('networkTransactions', lastStats.tx_count.toString());
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval));
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 2).toString());
-			updateText('minimumFee', getReadableCoins(lastStats.min_tx_fee,2);
+			updateText('minimumFee', getReadableCoins(lastStats.min_tx_fee,2));
 			$("time.timeago").timeago();
 			getPoolTransactions();
 			var currHeight = $('#blocks_rows').children().first().data('height');
@@ -439,7 +439,7 @@ $('#goto-height').keyup(function(e){
 		if (urlParam('height')) 
 				loadHeight = parseInt(urlParam('height'));
             else
-				loadHeight = lastStats.height - 1;
+				loadHeight = lastStats.last_known_block_index;
 		
 		if((loadHeight - 31) < 0){
 			$('#prev-page').addClass('disabled');
@@ -474,7 +474,6 @@ $('#goto-height').keyup(function(e){
         row.setAttribute('title', block.hash);
 		var dateTime = new Date(block.timestamp * 1000).toISOString();
 		row.setAttribute('data-dt', dateTime);
-		row.setAttribute('data-min-fee', parseFloat(getReadableCoins(block.min_tx_fee,6,false)));
         var columns =
             '<td>' + block.height + '</td>' +
             '<td class="date-time">' + formatDate(block.timestamp) + ' (<time class="timeago" datetime="'+dateTime+'"></time>)</td>' +
@@ -484,7 +483,6 @@ $('#goto-height').keyup(function(e){
             '<td>' + block.tx_count + '</td>';
 
 		Difficulties.push(parseInt(block.difficulty));
-		MinFees.push(parseFloat(getReadableCoins(block.min_tx_fee,6,false)));
 		Blocks.push(parseInt(block.height));
 		Txses.push(parseInt(block.tx_count));
 		Sizes.push(parseInt(block.cumul_size));
@@ -766,42 +764,6 @@ function displayDiffChart() {
 					display:false
 				},
 				display: false
-			  },{
-				id: 'MinFee',
-				type: 'linear',
-				position: 'right',
-				scaleLabel: {
-					display: true,
-					labelString: 'Minimum Fee'
-				},
-				gridLines: {
-					display:false
-				},
-				ticks: {
-					fontSize: 9,
-					display:true,
-					suggestedMin: 0.001,
-					suggestedMax: 0.01
-				},
-				display: true
-			  },{
-				id: 'DepoRate',
-				type: 'linear',
-				position: 'right',
-				scaleLabel: {
-					display: true,
-					labelString: 'Deposit Rate'
-				},
-				gridLines: {
-					display:false
-				},
-				ticks: {
-					fontSize: 9,
-					display:true,
-					suggestedMin: 0.001,
-					suggestedMax: 0.01
-				},
-				display: true
 			  }
 			  
 			  ],
@@ -903,23 +865,19 @@ function refreshChart() {
 			var txses = row.data("json").tx_count;
 			var size  = row.data("json").cumul_size;
 			var time  = row.attr('data-dt');
-			var mfee  = row.attr('data-min-fee');
 
 				labels.push(label);
 				diffs.push(diff);
 				txsnr.push(txses);
 				sizes.push(size);				
-				times.push(time);				
-				mfees.push(mfee);
+				times.push(time);
 		}
 		
 		diffChart.data.labels = times.reverse();
 		diffChart.data.datasets[0].data = labels.reverse();
 		diffChart.data.datasets[1].data = diffs.reverse();
-		diffChart.data.datasets[2].data = mfees.reverse();
-		diffChart.data.datasets[3].data = txsnr.reverse();
-		diffChart.data.datasets[4].data = sizes.reverse();
-
+		diffChart.data.datasets[2].data = txsnr.reverse();
+		diffChart.data.datasets[3].data = sizes.reverse();
 		
 		diffChart.update();
 }	
@@ -929,10 +887,8 @@ function loadMoreChart() {
 	diffChart.data.labels = [].concat(Timestamps).reverse();
 	diffChart.data.datasets[0].data = [].concat(Blocks).reverse();
 	diffChart.data.datasets[1].data = [].concat(Difficulties).reverse();
-	diffChart.data.datasets[2].data = [].concat(MinFees).reverse();
-	diffChart.data.datasets[3].data = [].concat(Txses).reverse();
-	diffChart.data.datasets[4].data = [].concat(Sizes).reverse();
-
+	diffChart.data.datasets[2].data = [].concat(Txses).reverse();
+	diffChart.data.datasets[3].data = [].concat(Sizes).reverse();
 	diffChart.update();
 }
 

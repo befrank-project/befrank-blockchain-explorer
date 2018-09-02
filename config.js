@@ -1,8 +1,9 @@
 var api = 'http://blocks.befrank.site:18322';
+var apiList = [];
 var blockTargetInterval = 120;
 var coinUnits = 100;
 var symbol = 'BFR';
-var refreshDelay = 10000;
+var refreshDelay = 30000;
 var minimumFee = 100;
 // pools stats by MainCoins
 var networkStat = {
