@@ -49,13 +49,7 @@
 						<li class="list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="top" data-original-title="Average difficulty by last 30 blocks."><i class="fa fa-lock"></i> Average Difficulty: <span id="avgDifficulty" class="value"></span></li>
 
 						<li class="list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="top" data-original-title="Current estimated network hash rate. Calculated by current difficulty."><i class="fa fa-tachometer"></i> Hash Rate: <span id="networkHashrate" class="value"></span></li>
-						
-						<li class="list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="top" data-original-title="Current Base Reward (for last mined block)."><i class="fa fa-certificate"></i> Reward: <span id="currentReward"></span></li>
-						
-						<li class="list-group-item d-flex justify-content-between align-items-center" data-toggle="tooltip" data-placement="top" data-original-title="Total BeFrank supply in circulation."><i class="fa fa-money"></i> Supply: <span id="totalCoins"></span></li>
 
-						<li class="list-group-item d-flex justify-content-between align-items-center disabled" data-toggle="tooltip" data-placement="top" data-original-title="Minimum transaction fee."><i class="fa fa-percent" aria-hidden="true"></i> Min. fee: <span id="minimumFee"></span></li>
-						
 					</ul>
 				</div>
 				<div class="col-sm-6 col-md-3">
@@ -254,6 +248,7 @@ currentPage = {
             updateText('networkHashrate', getReadableHashRateString(lastStats.difficulty / blockTargetInterval));
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.difficulty, 2).toString());
 			updateText('minimumFee', getReadableCoins(lastStats.min_tx_fee,2));
+			updateTest('emiss')
 			$("time.timeago").timeago();
 			getPoolTransactions();
 			var currHeight = $('#blocks_rows').children().first().data('height');
@@ -305,7 +300,8 @@ $.ajax({
 			block = data.result.block;
 				updateText('totalCoins', getReadableCoins(block.alreadyGeneratedCoins,2));
 				updateText('currentReward', getReadableCoins(block.baseReward,2));
-			}
+                updateText('emissionPercent', (block.alreadyGeneratedCoins / lastStats.moneySupply * 100).toFixed(2));
+            }
 		});
     }
 });
@@ -550,7 +546,6 @@ $('#goto-height').keyup(function(e){
 	function calcAvgSolveTime(){ 
 		ts = time_stamps.concat([]);
 		ts.sort();
-		var avg_solve_time = 0;
 		var solveTime = 0;
 		for (var i = 1; i < ts.length; i++){
 			solveTime += ts[i] - ts[i - 1];
@@ -632,7 +627,7 @@ function displayDiffChart() {
 				pointRadius: 0,
 				pointHoverRadius: 0,
 				pointHitRadius: 0,
-				display: false,
+				display: true,
 				type: 'line'
 			  },{
 				data: [].concat(Difficulties).reverse(),
